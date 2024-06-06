@@ -9,12 +9,9 @@ const nextConfig = {
         pathname: "/storage/v1/object/public/cabin-images/**",
       },
     ],
-    unoptimized: true, //we need to set this before build so that Next Image API doent cos issues in static files.
+    // unoptimized: true, //we need to set this before build so that Next Image API doent cos issues in static files.
   },
-  output: "export",
+  // output: "export",
 };
 
 export default nextConfig;
-
-// notes (move to documentation):
-// line 12 note

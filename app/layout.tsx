@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: JSX.Element }) {
         className={`${josefin_sans.className} bg-primary-900 relative min-h-screen text-primary-50 flex flex-col`}
       >
         <Header />
-        <div className="flex-1 px-8 py-12 bg-primary-800 grid">
+        <div className="flex-1 px-8 py-12 grid">
           <main className="mx-auto max-w-7xl w-full">{children}</main>
         </div>
       </body>

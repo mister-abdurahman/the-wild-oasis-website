@@ -1,6 +1,7 @@
 import { eachDayOfInterval } from "date-fns";
 import { supabase } from "./supabase";
 import { notFound } from "next/navigation";
+import { unstable_noStore } from "next/cache";
 
 /////////////
 // GET
@@ -38,6 +39,7 @@ export async function getCabinPrice(id: string) {
 }
 
 export const getCabins = async function () {
+  // unstable_noStore() //to opt out of static to dynamic rendering.
   const { data, error } = await supabase.from("cabins").select("*");
   // .select("id, name, maxCapacity, regularPrice, discount, image")
   // .order("name");
@@ -152,7 +154,7 @@ export async function getCountries() {
 /////////////
 // CREATE
 
-export async function createGuest(newGuest:any) {
+export async function createGuest(newGuest: any) {
   const { data, error } = await supabase.from("guests").insert([newGuest]);
 
   if (error) {
@@ -163,7 +165,7 @@ export async function createGuest(newGuest:any) {
   return data;
 }
 
-export async function createBooking(newBooking:any) {
+export async function createBooking(newBooking: any) {
   const { data, error } = await supabase
     .from("bookings")
     .insert([newBooking])
@@ -183,7 +185,7 @@ export async function createBooking(newBooking:any) {
 // UPDATE
 
 // The updatedFields is an object which should ONLY contain the updated data
-export async function updateGuest(id:string, updatedFields:any) {
+export async function updateGuest(id: string, updatedFields: any) {
   const { data, error } = await supabase
     .from("guests")
     .update(updatedFields)
@@ -198,7 +200,7 @@ export async function updateGuest(id:string, updatedFields:any) {
   return data;
 }
 
-export async function updateBooking(id:string, updatedFields:any) {
+export async function updateBooking(id: string, updatedFields: any) {
   const { data, error } = await supabase
     .from("bookings")
     .update(updatedFields)
