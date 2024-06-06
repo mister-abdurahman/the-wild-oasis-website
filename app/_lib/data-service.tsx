@@ -142,7 +142,8 @@ export async function getSettings() {
 export async function getCountries() {
   try {
     const res = await fetch(
-      "https://restcountries.com/v2/all?fields=name,flag"
+      // "https://restcountries.com/v2/all?fields=name,flag"
+      "https://countriesnow.space/api/v0.1/countries"
     );
     const countries = await res.json();
     return countries;
