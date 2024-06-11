@@ -5,6 +5,25 @@ import { auth, signIn, signOut } from "./auth";
 import { supabase } from "./supabase";
 import { getBookings } from "./data-service";
 import { redirect } from "next/navigation";
+import { z } from "zod";
+
+const createReservationformDataType = z.object({
+  startDate: z.date(),
+  endDate: z.date(),
+  numNights: z.number().min(1),
+  cabinPrice: z.number(),
+  cabinId: z.number(),
+  numGuests: z
+    .number()
+    .int()
+    .positive("Number of Guests must be a positive integer"),
+  observations: z.string(),
+  extrasPrice: z.number(),
+  totalPrice: z.number(),
+  isPaid: z.boolean(),
+  hasBreakfast: z.boolean().optional(),
+  status: z.string(),
+});
 
 export async function signInAction() {
   await signIn("google", {
@@ -86,4 +105,30 @@ export async function updateReservation(formData) {
   revalidatePath("/account/reservations");
   revalidatePath(`/account/reservations/edit/${reservationId}`);
   redirect("/account/reservations");
+}
+
+export async function createReservation(bookingData, formData) {
+  const session = await auth();
+  if (!session) throw new Error("Guest needs to be logged in");
+
+  // Object.entries(formData.entries()); //if we have a large pool of data in our form (converts form to object)
+  const newBooking = {
+    ...bookingData,
+    guestId: session.user?.guestId,
+    numGuests: Number(formData.get("numGuests")),
+    observations: formData.get("observations").slice(0, 1000),
+    extrasPrice: 0,
+    totalPrice: bookingData.cabinPrice,
+    isPaid: false,
+    hasBreakfast: formData.get("hasBreakfast") ? true : false,
+    status: "unconfirmed",
+  };
+
+  const validatedData = createReservationformDataType.parse(newBooking);
+
+  const { error } = await supabase.from("bookings").insert([validatedData]);
+
+  if (error) throw new Error("Reservation could not be created");
+  revalidatePath(`/cabins/${bookingData.cabinId}`);
+  redirect("/cabins/thankyou");
 }

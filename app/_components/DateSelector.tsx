@@ -41,6 +41,7 @@ function DateSelector({
 
   const { regularPrice, discount } = cabin;
   const numNights = differenceInDays(displayRange.to, displayRange.from);
+  //   const numNights = differenceInDays(range.to, range.from);
   const cabinPrice = numNights * (regularPrice - discount);
 
   //   const numNights = 23;
@@ -56,9 +57,10 @@ function DateSelector({
       <DayPicker
         className="pt-12 place-self-center"
         mode="range"
-        onSelect={(range) => setRange(displayRange)}
+        onSelect={(range) => setRange(range)}
+        // onSelect={(range) => setRange(displayRange)}
         selected={displayRange}
-        // onSelect={setRange}
+        // selected={range}
         min={minBookingLength + 1}
         max={maxBookingLength}
         fromMonth={new Date()}
