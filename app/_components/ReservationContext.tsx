@@ -13,12 +13,14 @@ interface contextType {
     from: undefined | string;
     to: undefined | string;
   };
-  setRange: Dispatch<
-    SetStateAction<{
-      from: undefined | string;
-      to: undefined | string;
-    }>
-  >;
+  setRange:
+    | Dispatch<
+        SetStateAction<{
+          from: undefined | string;
+          to: undefined | string;
+        }>
+      >
+    | any;
   resetRange: () => void;
 }
 const initialState = {

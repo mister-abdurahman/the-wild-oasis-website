@@ -4,12 +4,13 @@ import ReservationCard from "./ReservationCard";
 import { bookingType } from "../_lib/interfaces";
 import { deleteReservation } from "../_lib/actions";
 
-function ReservationList({ bookings }: { bookings: any }) {
+function ReservationList({ bookings }: { bookings: bookingType[] }) {
   const [optimisticBookings, optimisticDelete] = useOptimistic(
     bookings,
     (currentBookings, bookingIdParsedInOptimisticDeleteFn) => {
       return currentBookings.filter(
-        (booking) => booking.id === bookingIdParsedInOptimisticDeleteFn
+        (booking: { id: string }) =>
+          booking.id === bookingIdParsedInOptimisticDeleteFn
       );
     }
   );

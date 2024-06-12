@@ -13,7 +13,7 @@ import { useReservation } from "./ReservationContext";
 
 //we need this fn cos our selected range is a persisting data and some cabins have already booked dates we do not want to be allowed to be selected
 function isAlreadyBooked(
-  range: { from: string; to: string },
+  range: { from: string; to: string } | any,
   datesArr: Date[]
 ) {
   return (
@@ -37,7 +37,7 @@ function DateSelector({
   // CHANGE
   const { range, setRange, resetRange } = useReservation();
 
-  const displayRange = isAlreadyBooked(range, bookedDates) ? {} : range;
+  const displayRange: any = isAlreadyBooked(range, bookedDates) ? {} : range;
 
   const { regularPrice, discount } = cabin;
   const numNights = differenceInDays(displayRange.to, displayRange.from);
@@ -70,7 +70,7 @@ function DateSelector({
         numberOfMonths={2}
         disabled={(curDate) =>
           isPast(curDate) ||
-          bookedDates.some((date) => isSameDay(date, curDate))
+          bookedDates.some((date: string) => isSameDay(date, curDate))
         }
       />
 

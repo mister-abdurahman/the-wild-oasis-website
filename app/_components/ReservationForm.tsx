@@ -2,20 +2,21 @@
 
 import { differenceInDays } from "date-fns";
 import { useReservation } from "./ReservationContext";
-import { createReservation } from "../_lib/actions";
+import { bookingDataType, createReservation } from "../_lib/actions";
 import { SubmitButton } from "./SubmitButton";
+import Image from "next/image";
 
 function ReservationForm({ cabin, user }: { cabin: any; user: any }) {
   const { range, resetRange } = useReservation();
   const { maxCapacity, regularPrice, discount, id: cabinId } = cabin;
 
   const startDate = range.from;
-  const endDate = range.to;
+  const endDate: any = range.to;
 
   const numNights = differenceInDays(endDate, startDate);
   const cabinPrice = numNights * (regularPrice - discount);
 
-  const bookingData = {
+  const bookingData: bookingDataType = {
     startDate,
     endDate,
     numNights,
@@ -27,8 +28,17 @@ function ReservationForm({ cabin, user }: { cabin: any; user: any }) {
 
   return (
     <div className="scale-[1.01]">
-      <div className="bg-primary-800 text-primary-300 px-16 py-2 flex justify-between items-center">
+      <div className="bg-primary-800 text-primary-300 px-16 py-2 flex gap-4 items-center">
         <p>Logged in as {user?.name}</p>
+        <figure className="h-8 rounded-full aspect-square relative overflow-clip">
+          <Image
+            src={user?.image}
+            fill
+            alt={user?.name || "user profile photo"}
+            referrerPolicy="no-referrer"
+            className="object-cover object-center"
+          />
+        </figure>
 
         {/* <div className='flex gap-4 items-center'>
             <img

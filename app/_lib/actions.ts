@@ -6,6 +6,7 @@ import { supabase } from "./supabase";
 import { getBookings } from "./data-service";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+import { Session, User } from "next-auth";
 
 const createReservationformDataType = z.object({
   startDate: z.date(),
@@ -25,6 +26,21 @@ const createReservationformDataType = z.object({
   status: z.string(),
 });
 
+export interface bookingDataType {
+  startDate: string | undefined;
+  endDate: string | undefined;
+  numNights: number;
+  cabinPrice: number;
+  cabinId: number;
+}
+
+interface userType extends User {
+  guestId?: string;
+}
+export interface sessionType extends Session {
+  user?: userType | undefined;
+}
+
 export async function signInAction() {
   await signIn("google", {
     redirectTo: "/account",
@@ -34,8 +50,8 @@ export async function signOutAction() {
   await signOut({ redirectTo: "/" });
 }
 
-export async function updateGuest(formData) {
-  const session = await auth();
+export async function updateGuest(formData: FormData | any) {
+  const session: sessionType | null = await auth();
   if (!session) throw new Error("Guest needs to be logged in");
 
   const nationalID = formData.get("nationalID");
@@ -61,7 +77,7 @@ export async function updateGuest(formData) {
 }
 
 export async function deleteReservation(bookingId: string) {
-  const session = await auth();
+  const session: sessionType | null = await auth();
   if (!session) throw new Error("Guest needs to be logged in");
   const bookings = await getBookings(session?.user?.guestId);
   const bookingIds = bookings.map((booking) => booking.id);
@@ -77,17 +93,17 @@ export async function deleteReservation(bookingId: string) {
   revalidatePath("/account/reservations");
 }
 
-export async function updateReservation(formData) {
-  const session = await auth();
+export async function updateReservation(formData: FormData) {
+  const session: sessionType | null = await auth();
   if (!session) throw new Error("Guest needs to be logged in");
 
   const numGuests = formData.get("numGuests");
-  const observations = formData.get("observations").slice(0, 1000);
+  const observations = formData.get("observations")?.slice(0, 1000);
   const reservationId = Number(formData.get("reservationId"));
 
   const bookings = await getBookings(session?.user?.guestId);
   const bookingIds = bookings.map((booking) => booking.id);
-  if (!bookingIds.includes(reservationId)) {
+  if (!bookingIds.includes(String(reservationId))) {
     throw new Error("You are not allowed to edit this reservation");
   }
 
@@ -107,8 +123,11 @@ export async function updateReservation(formData) {
   redirect("/account/reservations");
 }
 
-export async function createReservation(bookingData, formData) {
-  const session = await auth();
+export async function createReservation(
+  bookingData: bookingDataType,
+  formData: FormData
+) {
+  const session: sessionType | null = await auth();
   if (!session) throw new Error("Guest needs to be logged in");
 
   // Object.entries(formData.entries()); //if we have a large pool of data in our form (converts form to object)
@@ -116,7 +135,7 @@ export async function createReservation(bookingData, formData) {
     ...bookingData,
     guestId: session.user?.guestId,
     numGuests: Number(formData.get("numGuests")),
-    observations: formData.get("observations").slice(0, 1000),
+    observations: formData.get("observations")?.slice(0, 1000),
     extrasPrice: 0,
     totalPrice: bookingData.cabinPrice,
     isPaid: false,
