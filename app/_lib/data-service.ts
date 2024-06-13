@@ -147,7 +147,7 @@ export async function getSettings() {
 
 export async function getCountries1() {
   try {
-    const res = await fetch("http://localhost:3000/api/countries");
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/countries`);
     return await res.json();
   } catch (error) {
     throw new Error("Could not fetch countries 1");

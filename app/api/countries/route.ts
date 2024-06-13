@@ -1256,16 +1256,3 @@ const countries = [
 export async function GET() {
   return Response.json({ data: countries });
 }
-// export async function GET() {
-//   //   return Response.json({ message: "hello" });
-//   fs.readFile(`${__dirname}/countries.json`, "utf-8", (err, data) => {
-//     if (err) return Response.json({ message: "err occured" });
-//     try {
-//       const jsonData = JSON.parse(data);
-//       return Response.json({ data: jsonData });
-//     } catch (parseErr) {
-//       console.error("Error parsing JSON:", parseErr);
-//       return Response.json({ error: "Internal Server Error" });
-//     }
-//   });
-// }

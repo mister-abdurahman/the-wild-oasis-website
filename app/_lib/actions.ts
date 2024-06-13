@@ -14,6 +14,7 @@ const createReservationformDataType = z.object({
   numNights: z.number().min(1),
   cabinPrice: z.number(),
   cabinId: z.number(),
+  guestId: z.number(),
   numGuests: z
     .number()
     .int()
