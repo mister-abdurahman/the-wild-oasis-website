@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import { pages } from "next/dist/build/templates/app-page";
 import { createGuest, getGuest } from "./data-service";
+import getEnvVariable from "./getEnv";
 
 interface sessionType {
   session: { user: { guestId: string; email: string } };
@@ -16,8 +17,8 @@ interface signinType {
 const authConfig: any = {
   providers: [
     Google({
-      clientId: process.env.AUTH_GOOGLE_ID,
-      clientSecret: process.env.AUTH_GOOGLE_SECRET,
+      clientId: getEnvVariable("AUTH_GOOGLE_ID"),
+      clientSecret: getEnvVariable("AUTH_GOOGLE_SECRET"),
     }),
   ],
   callbacks: {
