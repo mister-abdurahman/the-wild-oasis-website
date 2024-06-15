@@ -57,6 +57,8 @@ export default function UpdateProfileForm({
       <div className="space-y-2">
         <label htmlFor="nationalID">National ID number</label>
         <input
+          minLength={6}
+          maxLength={12}
           name="nationalID"
           id="nationalID"
           defaultValue={nationalID}
