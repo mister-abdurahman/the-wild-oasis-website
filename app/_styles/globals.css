@@ -74,6 +74,7 @@
   transform: rotate(45deg);
 }
 .checkbox:checked ~ .menubar_bg {
+  position: fixed;
   transform: scale(100);
 }
 .checkbox:checked ~ .menubar_list {

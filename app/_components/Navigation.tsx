@@ -19,7 +19,7 @@ export default async function Navigation() {
         </span>
       </label>
       <span
-        className={`menubar_bg transition-transform rounded-full h-4 aspect-square duration-500 sm:hidden block fixed bg-primary-800 top-12 right-12 -z-10`}
+        className={`menubar_bg transition-transform rounded-full h-4 aspect-square duration-500 sm:hidden block absolute bg-primary-800 top-6 right-6 -z-10`}
       >
         &nbsp;
       </span>
