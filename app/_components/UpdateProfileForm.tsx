@@ -15,7 +15,7 @@ export default function UpdateProfileForm({
   return (
     <form
       action={updateGuest}
-      className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
+      className="bg-primary-900 sm:py-8 py-4 sm:px-12 px-6 sm:text-lg text-base flex sm:gap-6 gap-4 flex-col"
     >
       <div className="space-y-2">
         <label htmlFor="fullName">Full name</label>

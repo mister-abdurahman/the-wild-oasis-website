@@ -104,7 +104,8 @@ export async function updateReservation(formData: FormData) {
 
   const bookings = await getBookings(session?.user?.guestId);
   const bookingIds = bookings.map((booking) => booking.id);
-  if (!bookingIds.includes(String(reservationId))) {
+
+  if (!bookingIds.includes(reservationId)) {
     throw new Error("You are not allowed to edit this reservation");
   }
 

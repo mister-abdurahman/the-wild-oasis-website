@@ -23,7 +23,7 @@ export default async function Page() {
         Update your guest profile
       </h2>
 
-      <p className="text-lg mb-8 text-primary-200">
+      <p className="text-lg sm:mb-8 mb-4 text-primary-200">
         Providing the following information will make your check-in process
         faster and smoother. See you soon!
       </p>

@@ -8,8 +8,8 @@ function DeleteReservation({
   bookingId,
   onDelete,
 }: {
-  bookingId: string;
-  onDelete: (x: string) => void;
+  bookingId: string | number;
+  onDelete: (x: string | number) => void;
 }) {
   const [isPending, startTransition] = useTransition();
   function handleDelete() {
@@ -21,7 +21,7 @@ function DeleteReservation({
   return (
     <button
       onClick={handleDelete}
-      className="group flex items-center gap-2 uppercase text-xs font-bold text-primary-300 flex-grow px-3 hover:bg-accent-600 transition-colors hover:text-primary-900"
+      className="group flex items-center gap-2 sm:border-none border border-primary-800 uppercase text-xs font-bold text-primary-300 flex-grow px-3 hover:bg-accent-600 transition-colors hover:text-primary-900"
     >
       {isPending ? (
         <span className="mx-auto">

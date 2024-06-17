@@ -55,7 +55,7 @@ function DateSelector({
   return (
     <div className="flex flex-col justify-between">
       <DayPicker
-        className="pt-12 place-self-center"
+        className="sm:pt-12 pt-6 place-self-center"
         mode="range"
         onSelect={(range) => setRange(range)}
         // onSelect={(range) => setRange(displayRange)}
@@ -74,29 +74,35 @@ function DateSelector({
         }
       />
 
-      <div className="flex items-center justify-between px-8 bg-accent-500 text-primary-800 h-[72px]">
-        <div className="flex items-baseline gap-6">
-          <p className="flex gap-2 items-baseline">
+      <div className="flex flex-wrap items-center text-sm justify-between sm:px-8 px-4 py-2 bg-accent-500 text-primary-800 sm:h-[72px] h-auto">
+        <div className="flex items-baseline sm:gap-6 gap-3">
+          <p className="flex sm:gap-2 gap-1 items-baseline">
             {discount > 0 ? (
               <>
-                <span className="text-2xl">${regularPrice - discount}</span>
+                <span className="sm:text-2xl text-sm">
+                  ${regularPrice - discount}
+                </span>
                 <span className="line-through font-semibold text-primary-700">
                   ${regularPrice}
                 </span>
               </>
             ) : (
-              <span className="text-2xl">${regularPrice}</span>
+              <span className="sm:text-2xl text-lg">${regularPrice}</span>
             )}
             <span className="">/night</span>
           </p>
           {numNights ? (
             <>
-              <p className="bg-accent-600 px-3 py-2 text-2xl">
+              <p className="bg-accent-600 px-3 py-2 sm:text-2xl text-base">
                 <span>&times;</span> <span>{numNights}</span>
               </p>
               <p>
-                <span className="text-lg font-bold uppercase">Total</span>{" "}
-                <span className="text-2xl font-semibold">${cabinPrice}</span>
+                <span className="sm:text-lg text-base font-bold uppercase">
+                  Total
+                </span>{" "}
+                <span className="sm:text-2xl text-lg font-semibold">
+                  ${cabinPrice}
+                </span>
               </p>
             </>
           ) : null}
@@ -104,7 +110,7 @@ function DateSelector({
 
         {range?.from || range?.to ? (
           <button
-            className="border border-primary-800 py-2 px-4 text-sm font-semibold"
+            className="border border-primary-800 py-2 sm:px-4 px-2 text-sm font-semibold"
             onClick={resetRange}
           >
             Clear

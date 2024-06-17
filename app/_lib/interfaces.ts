@@ -1,5 +1,5 @@
 export interface bookingType {
-  id: string;
+  id: string | number;
   guestId: string;
   cabinId?: string;
   startDate: string;

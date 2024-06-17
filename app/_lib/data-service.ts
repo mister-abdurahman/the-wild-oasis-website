@@ -98,7 +98,6 @@ export async function getBookings(
     console.error(error);
     throw new Error("Bookings could not get loaded");
   }
-  console.log(data);
   return data;
 }
 
@@ -147,9 +146,7 @@ export async function getSettings() {
 
 export async function getCountries1() {
   try {
-    const res = await fetch(
-      `${getEnv('NEXTAUTH_URL')}/api/countries`
-    );
+    const res = await fetch(`${getEnv("NEXTAUTH_URL")}/api/countries`);
     // const res = await fetch(`${process.env.NEXTAUTH_URL}/api/countries`);
     return await res.json();
   } catch (error) {

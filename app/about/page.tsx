@@ -13,8 +13,8 @@ export default async function About() {
   const cabins = await getCabins();
 
   return (
-    <div className="grid grid-cols-5 gap-x-24 gap-y-32 text-lg items-center">
-      <div className="col-span-3">
+    <div className="grid grid-cols-5 sm:gap-x-24 gap-x-12 sm:gap-y-32 gap-y-16 text-lg items-center">
+      <div className="sm:col-span-3 col-span-5">
         <h1 className="text-4xl mb-10 text-accent-400 font-medium">
           Welcome to The Wild Oasis
         </h1>
@@ -41,23 +41,24 @@ export default async function About() {
         </div>
       </div>
 
-      <div className="col-span-2">
+      <div className="sm:col-span-2 col-span-5">
         <Image
           src={image1}
           alt="Family sitting around a fire pit in front of cabin"
+          className="w-full sm:aspect-auto aspect-square"
         />
       </div>
 
-      <div className="col-span-2 relative aspect-square">
+      <div className="sm:col-span-2 col-span-5 sm:order-none order-last relative aspect-square">
         <Image
-          src="/about-2.jpg"
+          src={image2}
           fill
           alt="Family that manages The Wild Oasis"
-          className="object-cover"
+          className="w-full sm:aspect-auto aspect-square object-cover"
         />
       </div>
 
-      <div className="col-span-3">
+      <div className="sm:col-span-3 col-span-5">
         <h1 className="text-4xl mb-10 text-accent-400 font-medium">
           Managed by our family since 1962
         </h1>

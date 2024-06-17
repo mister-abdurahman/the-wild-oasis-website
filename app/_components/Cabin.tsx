@@ -7,8 +7,8 @@ function Cabin({ cabin }: { cabin: any }) {
   const { id, name, maxCapacity, regularPrice, discount, image, description } =
     cabin;
   return (
-    <div className="grid grid-cols-[3fr_4fr] gap-20 border border-primary-800 py-3 px-10 mb-24">
-      <div className="relative scale-[1.15] -translate-x-3">
+    <div className="grid sm:grid-cols-[3fr_4fr] grid-cols-1 sm:gap-20 gap-10 border border-primary-800 sm:py-3 py-0 sm:px-10 px-4 sm:mb-24 mb-12">
+      <div className="relative scale-[1.15] sm:-translate-x-3 translate-x-0">
         <Image
           src={image}
           alt={`Cabin ${name}`}
@@ -18,7 +18,7 @@ function Cabin({ cabin }: { cabin: any }) {
       </div>
 
       <div>
-        <h3 className="text-accent-100 font-black text-7xl mb-5 translate-x-[-254px] bg-primary-950 p-6 pb-1 w-[150%]">
+        <h3 className="text-accent-100 font-black sm:text-7xl text-5xl mb-5 sm:translate-x-[-254px] translate-x-0 bg-primary-950 p-6 pb-1 sm:w-[150%] w-full">
           Cabin {name}
         </h3>
 
@@ -26,7 +26,7 @@ function Cabin({ cabin }: { cabin: any }) {
           <TextExpander>{description}</TextExpander>
         </p>
 
-        <ul className="flex flex-col gap-4 mb-7">
+        <ul className="flex flex-col gap-4 mb-7 sm:text-base text-xs">
           <li className="flex gap-3 items-center">
             <UsersIcon className="h-5 w-5 text-primary-600" />
             <span className="text-lg">

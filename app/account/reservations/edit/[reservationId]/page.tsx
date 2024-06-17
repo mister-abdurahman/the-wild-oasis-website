@@ -15,13 +15,13 @@ export default async function Page({
 
   return (
     <div>
-      <h2 className="font-semibold text-2xl text-accent-400 mb-7">
+      <h2 className="font-semibold text-2xl text-accent-400 sm:mb-7 mb-3">
         Edit Reservation #{reservationId}
       </h2>
 
       <form
         action={updateReservation}
-        className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
+        className="bg-primary-900 sm:py-8 py-4 sm:px-12 px-2 text-lg flex gap-6 flex-col"
       >
         <div className="space-y-2">
           <label htmlFor="numGuests">How many guests?</label>

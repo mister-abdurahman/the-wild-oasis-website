@@ -27,8 +27,8 @@ function ReservationForm({ cabin, user }: { cabin: any; user: any }) {
   const createReservationWithData = createReservation.bind(null, bookingData); //to set first param in fn to bookingData
 
   return (
-    <div className="scale-[1.01]">
-      <div className="bg-primary-800 text-primary-300 px-16 py-2 flex gap-4 items-center">
+    <div className="sm:scale-[1.01] scale-1">
+      <div className="bg-primary-800 text-primary-300 sm:px-16 px-4 py-2 flex gap-4 items-center">
         <p>Logged in as {user?.name}</p>
         <figure className="h-8 rounded-full aspect-square relative overflow-clip">
           <Image
@@ -58,7 +58,7 @@ function ReservationForm({ cabin, user }: { cabin: any; user: any }) {
           await createReservationWithData(formData);
           resetRange();
         }}
-        className="bg-primary-900 py-10 px-16 text-lg flex gap-5 flex-col"
+        className="bg-primary-900 sm:py-10 py-5 sm:px-16 px-4 text-lg flex gap-5 flex-col"
       >
         <div className="space-y-2">
           <label htmlFor="numGuests">How many guests?</label>
