@@ -9,7 +9,7 @@ function ReservationList({ bookings }: { bookings: bookingType[] }) {
     bookings,
     (currentBookings, bookingIdParsedInOptimisticDeleteFn) => {
       return currentBookings.filter(
-        (booking: { id: string }) =>
+        (booking: { id: string | number }) =>
           booking.id === bookingIdParsedInOptimisticDeleteFn
       );
     }
