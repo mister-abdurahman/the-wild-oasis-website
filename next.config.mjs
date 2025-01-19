@@ -4,7 +4,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "tiqrnepcxnpaztuvztgv.supabase.co",
+        hostname: "umwjevpyasylkyfwtmkh.supabase.co",
         port: "",
         pathname: "/storage/v1/object/public/cabin-images/**",
       },
@@ -12,8 +12,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "lh3.googleusercontent.com",
         port: "",
-        pathname:
-          "/a/ACg8ocL4wB5DCd2rwnOSTYwSzl3kngQTcEJjPKbNSRAvd76YXv-8Fw=s96-c",
+        pathname: "/**",
       },
     ],
     // unoptimized: true, //we need to set this before build so that Next Image API doent cos issues in static files.

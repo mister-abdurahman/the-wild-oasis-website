@@ -56,7 +56,6 @@ export default async function Page({
   return (
     <div className="max-w-6xl mx-auto sm:mt-8 mt-4">
       <Cabin cabin={cabin} />
-
       <div>
         <h2 className="sm:text-5xl text-3xl font-semibold text-center text-accent-400 mb-10">
           Reserve {name} today. Pay on arrival.

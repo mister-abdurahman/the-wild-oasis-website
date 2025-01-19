@@ -12,6 +12,7 @@ export default function UpdateProfileForm({
   guest: any;
 }) {
   const { fullName, email, nationalID, nationality, countryFlag } = guest;
+
   return (
     <form
       action={updateGuest}
